@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 '''
 Created on 2016年7月19日
+多线程爬虫
 '''
 __author__ = 'zhm'
 
@@ -27,8 +28,6 @@ class Spider:
                 'user-agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36',
                 'x-requested-with':'XMLHttpRequest',
                      }
-        self.tool = tool.Tool()
-        self.rootpath='D:/taobaoMM/'
 
     #获取MM的信息,得到json格式数据，返回list格式
     def getLists(self,pageIndex):
@@ -45,7 +44,6 @@ class Spider:
             try:
                 #解析json数据
                 result = r.json()
-                print result
             except Exception as e:
                 print(u"JSON解析失败！"),e
                 result = {}
@@ -69,46 +67,65 @@ class Spider:
     def savePageInfo(self,pageIndex):
         #获取淘宝MM列表信息
         lists = self.getLists(pageIndex)
+        print u"本次找到美女",len(lists),"位"
+        i=1
         for item in lists:
+
             #item[0]个人详情URL,item[1]头像URL,item[2]姓名,item[3]年龄,item[4]居住地
             print u"发现一位模特,名字叫",item['realName']
             print u"身高",item['height'],u"体重",item['weight'],u",她在",item['city']
             print u"正在偷偷地保存",item['realName'],"的信息"
-            #print u"又意外地发现她的个人地址是",item['avatarUrl']
+#             print u"又意外地发现她的个人地址是",item['avatarUrl']
             #个人详情页面的URL
             detailURL = 'https://mm.taobao.com/self/aiShow.htm?userId='+str(item['userId'])
-            #得到个人详情页面代码
-            detailPage = self.getDetailPage(detailURL)
-            #print 'detailPage+++++++' ,detailPage
-            #获取个人简介
-            brief = self.getBrief(detailPage)
-            #获取所有图片列表
-            images = self.getAllImg(detailPage)
-            self.mkdir(item['realName'])
-            #保存个人简介
-            self.saveBrief(brief,item['realName'])
-            #保存头像
-            self.saveIcon(item['avatarUrl'],item['realName'])
-            #保存图片
-            self.saveImgs(images,item['realName'])
-    def saveDetail(self,detailURL,item):
-        #得到个人详情页面代码
+            self.download(detailURL,item,'Thread-'+str(i))
+            i+=1
+    def download(self,url,item,tName):
+        crawthread=CrawlerThread(url,item,tName)
+        crawthread.start()            
+        
+    #传入起止页码，获取MM图片
+    def savePagesInfo(self,start,end):
+        for i in range(start,end+1):
+            print u"正在偷偷寻找第",i,u"个地方，看看MM们在不在"
+            self.savePageInfo(i)
+import threading
+import time            
+class CrawlerThread(threading.Thread):
+    def __init__(self,url,item,tName):
+        threading.Thread.__init__(self)
+        self.url=url
+        self.item=item
+        self.tName=tName
+        self.tool = tool.Tool()
+        self.rootpath='D:/taobaoMM/'
+    def run(self):
+        try:
+            self.saveDetail(self.url,self.item,self.tName)
+        except Exception,e:
+            print u'下载失败',self.url
+            print u'线程',self.tName,'退出'
+            print e
+            return None
+    def saveDetail(self,detailURL,item,tName):
+    #得到个人详情页面代码
         detailPage = self.getDetailPage(detailURL)
-        #print 'detailPage+++++++' ,detailPage
+#             print 'detailPage+++++++' ,detailPage
         #获取个人简介
         brief = self.getBrief(detailPage)
         #获取所有图片列表
         images = self.getAllImg(detailPage)
         self.mkdir(item['realName'])
         #保存个人简介
-        self.saveBrief(brief,item['realName'])
+        self.saveBrief(brief,item['realName'],tName)
         #保存头像
-        self.saveIcon(item['avatarUrl'],item['realName'])
+        self.saveIcon(item['avatarUrl'],item['realName'],tName)
         #保存图片
-        self.saveImgs(images,item['realName'])
+        self.saveImgs(images,item['realName'],tName)
         
     #获取MM个人详情页面
     def getDetailPage(self,infoURL):
+        time.sleep(2)   #防止访问太快而导致连接受阻
         response = urllib2.urlopen(infoURL)
         return response.read().decode('gbk')
 
@@ -136,44 +153,46 @@ class Spider:
 
 
     #保存多张写真图片
-    def saveImgs(self,images,name):
+    def saveImgs(self,images,name,tName):
         number = 1
-        print u"发现",name,u"共有",len(images),u"张照片"
-        print images
+        print tName, u"发现",name,u"共有",len(images),u"张照片"
         for imageURL in images:
             splitPath = imageURL.split('.')
             fTail = splitPath.pop()
             if len(fTail) > 3:
                 fTail = "jpg"
             fileName = name + "/" + str(number) + "." + fTail
-            self.saveImg(imageURL,fileName)
+            self.saveImg(imageURL,fileName,tName)
             number += 1
 
     # 保存头像
-    def saveIcon(self,iconURL,name):
+    def saveIcon(self,iconURL,name,tName):
         splitPath = iconURL.split('.')
         fTail = splitPath.pop()
         fileName = name + "/icon." + fTail
-        self.saveImg(iconURL,fileName)
+        self.saveImg(iconURL,fileName,tName)
 
     #保存个人简介
-    def saveBrief(self,content,name):
+    def saveBrief(self,content,name,tName):
         fileName = name + "/" + name + ".txt"
         f = open(self.rootpath+fileName,"w+")
-        print u"正在偷偷保存她的个人信息为",fileName
+        print tName,u"正在偷偷保存她的个人信息为",fileName
         f.write(content.encode('utf-8'))
 
 
     #传入图片地址，文件名，保存单张图片
-    def saveImg(self,imageURL,fileName):
+    def saveImg(self,imageURL,fileName,tName):
         if(imageURL.find('https',0,len('https')) ==-1):
             imageURL='https:'+imageURL
-        u = urllib.urlopen(imageURL)
+            
+        urllib.urlretrieve(imageURL,self.rootpath+fileName)
+        
+        ''''u = urllib.urlopen(imageURL)
         data = u.read()
         f = open(self.rootpath+fileName, 'wb')
-        f.write(data)
-        print u"正在悄悄保存她的一张图片为",fileName
-        f.close()
+        f.write(data)'''
+        print tName,u"正在悄悄保存她的一张图片为",fileName
+#         f.close()
 
     #创建新目录
     def mkdir(self,path):
@@ -194,13 +213,7 @@ class Spider:
             # 如果目录存在则不创建，并提示目录已存在
             print u"名为",path,'的文件夹已经创建成功'
             return False
-        
-    #传入起止页码，获取MM图片
-    def savePagesInfo(self,start,end):
-        for i in range(start,end+1):
-            print u"正在偷偷寻找第",i,u"个地方，看看MM们在不在"
-            self.savePageInfo(i)
-    
+
 #传入起止页码即可，在此传入了2,10,表示抓取第2到10页的MM
 spider = Spider()
 # spider.getLists(1)
