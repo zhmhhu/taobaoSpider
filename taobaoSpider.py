@@ -2,7 +2,7 @@
 '''
 Created on 2016年7月19日
 获取MM的相册列表信息并存储在本地json文件中
-单线程爬虫
+多线程爬虫
 '''
 __author__ = 'zhm'
 
@@ -15,13 +15,11 @@ import requests
 import tool
 import time
 import json
-
 #抓取MM
 class Spider:
 
     #页面初始化
     def __init__(self):
-#         self.siteURL = 'http://mm.taobao.com/json/request_top_list.htm'
         self.headers={
                 'accept-language':'zh-CN,zh;q=0.8,en;q=0.6,en-US;q=0.4',
                 'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
@@ -30,19 +28,16 @@ class Spider:
                 'user-agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36',
                 'x-requested-with':'XMLHttpRequest',
                      }
-        self.tool = tool.Tool()
-        self.rootpath='D:/taobaoMM/'
-
+        self.threadnum=15  #同时下载的线程数量，不宜设置太多，否则会阻塞
+        self.threadpool=[]
     #获取MM的信息,得到json格式数据，返回list格式
     def getLists(self,pageIndex):
         siteURL = 'https://mm.taobao.com/tstar/search/tstar_model.do?_input_charset=utf-8'
         data={'currentPage':pageIndex,
           'pageSize':str(100),
           }
-        # 获得json格式的信息 --以下未完成
         r = requests.post(siteURL,headers=self.headers,data=data,timeout=30)
         r.encoding=('GBK')
-#         content = r.text.encode(r.encoding).decode('utf-8')
         if int(r.status_code) != 200:
             print (u"数据获取失败!")
         if int(r.status_code) == 200:
@@ -66,36 +61,63 @@ class Spider:
             print(u"无法解析服务器的响应内容: \n \t %s " % r.text )
             return
 
-   
+    #传入起止页码，获取MM图片
+    def savePagesInfo(self,start,end):
+        for i in range(start,end+1):
+            print u"正在偷偷寻找第",i,u"个地方，看看MM们在不在"
+            self.savePageInfo(i)
 
     #将一页淘宝MM的信息保存起来
     def savePageInfo(self,pageIndex):
         #获取淘宝MM列表信息
         lists = self.getLists(pageIndex)
         print u"本次找到美女",len(lists),"位"
-#         i=1
-        for item in lists:
-            #item[0]个人详情URL,item[1]头像URL,item[2]姓名,item[3]年龄,item[4]居住地
-            print u"发现一位模特,名字叫",item['realName']
-            print u"身高",item['height'],u"体重",item['weight'],u",她在",item['city']
-            print u"正在偷偷地保存",item['realName'],"的信息"
-            #个人详情页面的URL
-            detailURL = 'https://mm.taobao.com/self/aiShow.htm?userId='+str(item['userId'])
-            self.saveDetail(detailURL,item)
-#             self.saveDetail(self.url,self.item,self.threadnm)
-#             self.download(detailURL,item)
-#             i+=1
-#     def download(self,url,item,threadnm):
-#         crawthread=CrawlerThread(url,item,threadnm)
-#         crawthread.start()            
+        i=0
+        while i<len(lists):
+            j=0
+            detailURL = 'https://mm.taobao.com/self/aiShow.htm?userId='+str(lists[i+j]['userId'])
+            while j<self.threadnum and i+j < len(lists):
+                self.download(detailURL,lists[i+j],i+j)
+                j+=1
+            i+=j
+            for thread in self.threadpool:
+                thread.join(30)  #设置超时参数，30秒之后释放主线程
+    def download(self,url,item,threadnm):
+        crawthread=CrawlerThread(url,item,threadnm)
+        self.threadpool.append(crawthread)
+        crawthread.start()
         
-    #传入起止页码，获取MM图片
-    def savePagesInfo(self,start,end):
-        for i in range(start,end+1):
-            print u"正在偷偷寻找第",i,u"个地方，看看MM们在不在"
-            self.savePageInfo(i)
+
+import threading
+class CrawlerThread(threading.Thread):
+    def __init__(self,url,item,threadnm):
+        threading.Thread.__init__(self)
+        self.url=url
+        self.item=item
+        self.threadnm='Thread-'+str(threadnm)
+        self.save = Save();
+    def run(self):
+        try:
+            print u'下载线程',self.threadnm,'启动'
+            self.save.saveDetail(self.url,self.item,self.threadnm)
+        except Exception,e:
+            print u'下载失败',self.url
+            print u'下载线程',self.threadnm,'退出'
+            print e
+            return None
+
+class Save:
+    def __init__(self):
+        self.tool = tool.Tool()
+        self.rootpath='D:/taobaoMM/'
+    
+    def saveDetail(self,detailURL,item,threadnm):
+        time.sleep(2)   #防止访问太快而导致连接受阻
+        #item[0]个人详情URL,item[1]头像URL,item[2]姓名,item[3]年龄,item[4]居住地
+        print threadnm,u"发现一位模特,名字叫",item['realName']
+#         print threadnm,u"身高",item['height'],u"体重",item['weight'],u",她在",item['city']
+        print threadnm,u"正在保存",item['realName'],"的信息"
             
-    def saveDetail(self,detailURL,item):
         #得到个人详情页面代码
         detailPage = self.getDetailPage(detailURL)
 #             print 'detailPage+++++++' ,detailPage
@@ -112,6 +134,7 @@ class Spider:
         AlbumListAll=self.getAlbumListAll(item['userId'])
         #保持所有用户相册信息到用户文件夹下json文件    
         with open(self.rootpath+item['realName']+"/"+'AlbumListAll.json', 'w') as f:
+            print threadnm,u"正在写入",item['realName'],"的相册信息"
             f.write(json.dumps(AlbumListAll))
             f.close()
         '''
@@ -123,7 +146,6 @@ class Spider:
         
     #获取MM个人详情页面
     def getDetailPage(self,infoURL):
-        time.sleep(2)   #防止访问太快而导致连接受阻
         response = urllib2.urlopen(infoURL)
         return response.read().decode('gbk')
     
@@ -142,7 +164,7 @@ class Spider:
        
     #根据userid和page获取相册信息，返回数组[相册url，相册名](照片数量，创建时间暂时不解析)
     def getAlbumList(self,userid,page):
-        #次接口获取相册列表
+        #此接口获取相册列表
         albumURL='https://mm.taobao.com/self/album/open_album_list.htm'
         data={'_charset':'utf-8',
           'user_id' :str(userid),
@@ -180,7 +202,6 @@ class Spider:
         r = requests.post(photoListURL,data=data,timeout=100)
         r.encoding=('GBK')
         PhotoList=[]
-#         content = r.text.encode(r.encoding).decode('utf-8')
         if int(r.status_code) != 200:
             print (u"数据获取失败!获取相册ID失败")
             return None
@@ -282,25 +303,6 @@ class Spider:
             print u"名为",path,'的文件夹已经创建成功'
             return False
 
-'''import threading
-import time            
-class CrawlerThread(threading.Thread):
-    def __init__(self,url,item,threadnm):
-        threading.Thread.__init__(self)
-        self.url=url
-        self.item=item
-        self.threadnm=threadnm
-        self.tool = tool.Tool()
-        self.rootpath='D:/taobaoMM/'
-    def run(self):
-        try:
-            self.saveDetail(self.url,self.item,self.threadnm)
-        except Exception,e:
-            print u'下载失败',self.url
-            print u'线程',self.threadnm,'退出'
-            print e
-            return None'''
-    
 
 #传入起止页码即可，在此传入了2,10,表示抓取第2到10页的MM
 spider = Spider()
