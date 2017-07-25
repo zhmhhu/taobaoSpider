@@ -116,7 +116,7 @@ class Save:
                 j+=1
             i+=j
             for thread in self.threadpool:
-                thread.join(60)  #设置超时参数，60秒之后释放主线程'''
+                thread.join(60)  #设置超时参数，60秒之后释放主线程
         
     def download(self,userid,usernm,AlbumItem,threadnm):
         crawthread=CrawlerThread(userid,usernm,AlbumItem,threadnm)
