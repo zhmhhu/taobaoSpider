@@ -318,9 +318,11 @@ class CrawlerThread(threading.Thread):
             print u'下载线程',self.threadnm,'退出'
             print e
             return None
-# threadLock = threading.Lock()        
+# threadLock = threading.Lock()
 
-#传入页码即可，在此传入了1,表示抓取第1页的MM,一次下载一页
-spider = Spider()
-# spider.getLists(1)
-spider.savePageInfo(1)
+
+if __name__ == '__main__':
+    #传入页码即可，在此传入了1,表示抓取第1页的MM,一次下载一页
+    spider = Spider()
+    # spider.getLists(1)
+    spider.savePageInfo(1)
