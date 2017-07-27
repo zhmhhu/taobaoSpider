@@ -1,0 +1,3778 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <script src="http://oog4yfyu0.bkt.clouddn.com/echarts.min.js"></script>
+    <script type="text/javascript " src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript " src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/wordcloud.js"></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/anhui.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/aomen.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/beijing.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/chongqing.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/fujian.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/gansu.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/guangdong.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/guangxi.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/guizhou.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/hainan.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/hebei.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/heilongjiang.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/henan.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/hubei.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/hunan.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/jiangsu.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/jiangxi.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/jilin.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/liaoning.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/neimenggu.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/ningxia.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/qinghai.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/shangdong.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/shanghai.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/shanxi.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/sichuan.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/taiwan.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/tianjin.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/xianggang.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/xinjiang.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/xizang.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/yunnan.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/zhejiang.js "></script>
+    <script type="text/javascript " src="http://oog4yfyu0.bkt.clouddn.com/guangdong.js "></script>
+    <script type="text/javascript " src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM "></script>
+    <script type="text/javascript " src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js "></script>
+</head>
+
+<body>
+    <div id="main" style="width: 1200px;height:600px;"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+    "title": [
+        {
+            "text": "淘宝淘女郎城市分布图",
+            "subtext": "data from mm.taobao.com",
+            "left": "center",
+            "top": "auto",
+            "textStyle": {
+                "color": "#fff",
+                "fontSize": 18
+            },
+            "subtextStyle": {
+                "color": "#aaa",
+                "fontSize": 12
+            }
+        }
+    ],
+    "toolbox": {
+        "show": true,
+        "orient": "vertical",
+        "left": "right",
+        "top": "center",
+        "feature": {
+            "saveAsImage": {
+                "show": true
+            }
+        }
+    },
+    "_index_flag": 1837604,
+    "tooltip": {},
+    "series": [
+        {
+            "type": "scatter",
+            "name": "",
+            "coordinateSystem": "geo",
+            "symbol": "circle",
+            "symbolSize": 15,
+            "data": [
+                {
+                    "name": "屏东",
+                    "value": 1
+                },
+                {
+                    "name": "新竹",
+                    "value": 1
+                },
+                {
+                    "name": "台东",
+                    "value": 1
+                },
+                {
+                    "name": "台南",
+                    "value": 1
+                },
+                {
+                    "name": "新北",
+                    "value": 1
+                },
+                {
+                    "name": "高雄",
+                    "value": 6
+                },
+                {
+                    "name": "彭州",
+                    "value": 1
+                },
+                {
+                    "name": "松山",
+                    "value": 1
+                },
+                {
+                    "name": "鹤岗",
+                    "value": 7
+                },
+                {
+                    "name": "香坊",
+                    "value": 2
+                },
+                {
+                    "name": "鸡西",
+                    "value": 14
+                },
+                {
+                    "name": "大庆",
+                    "value": [
+                        125.03,
+                        46.58,
+                        52
+                    ]
+                },
+                {
+                    "name": "陇南",
+                    "value": 1
+                },
+                {
+                    "name": "张掖",
+                    "value": 3
+                },
+                {
+                    "name": "酒泉",
+                    "value": 6
+                },
+                {
+                    "name": "武威",
+                    "value": 2
+                },
+                {
+                    "name": "庆阳",
+                    "value": 5
+                },
+                {
+                    "name": "金昌",
+                    "value": [
+                        102.188043,
+                        38.520089,
+                        2
+                    ]
+                },
+                {
+                    "name": "茂",
+                    "value": 1
+                },
+                {
+                    "name": "四川",
+                    "value": 1
+                },
+                {
+                    "name": "曲阜",
+                    "value": 1
+                },
+                {
+                    "name": "利州",
+                    "value": 1
+                },
+                {
+                    "name": "江南",
+                    "value": 1
+                },
+                {
+                    "name": "游仙",
+                    "value": 1
+                },
+                {
+                    "name": "高坪",
+                    "value": 1
+                },
+                {
+                    "name": "罗山",
+                    "value": 1
+                },
+                {
+                    "name": "成华",
+                    "value": 2
+                },
+                {
+                    "name": "顺庆",
+                    "value": 3
+                },
+                {
+                    "name": "船山",
+                    "value": 1
+                },
+                {
+                    "name": "广安",
+                    "value": 4
+                },
+                {
+                    "name": "屯溪",
+                    "value": 1
+                },
+                {
+                    "name": "蓬安",
+                    "value": 1
+                },
+                {
+                    "name": "桂林",
+                    "value": [
+                        110.28,
+                        25.29,
+                        1
+                    ]
+                },
+                {
+                    "name": "自贡",
+                    "value": [
+                        104.778442,
+                        29.33903,
+                        13
+                    ]
+                },
+                {
+                    "name": "内江",
+                    "value": 14
+                },
+                {
+                    "name": "青州",
+                    "value": 2
+                },
+                {
+                    "name": "遵义",
+                    "value": [
+                        106.9,
+                        27.7,
+                        14
+                    ]
+                },
+                {
+                    "name": "阳泉",
+                    "value": [
+                        113.57,
+                        37.85,
+                        8
+                    ]
+                },
+                {
+                    "name": "长清",
+                    "value": 1
+                },
+                {
+                    "name": "金山",
+                    "value": 1
+                },
+                {
+                    "name": "西秀",
+                    "value": 1
+                },
+                {
+                    "name": "安宁",
+                    "value": 1
+                },
+                {
+                    "name": "保山",
+                    "value": 5
+                },
+                {
+                    "name": "昭通",
+                    "value": 4
+                },
+                {
+                    "name": "射洪",
+                    "value": 1
+                },
+                {
+                    "name": "源城",
+                    "value": 1
+                },
+                {
+                    "name": "六安",
+                    "value": 16
+                },
+                {
+                    "name": "榆阳",
+                    "value": 1
+                },
+                {
+                    "name": "烟台",
+                    "value": [
+                        121.39,
+                        37.52,
+                        116
+                    ]
+                },
+                {
+                    "name": "渭南",
+                    "value": [
+                        109.5,
+                        34.52,
+                        19
+                    ]
+                },
+                {
+                    "name": "洛阳",
+                    "value": [
+                        112.44,
+                        34.7,
+                        80
+                    ]
+                },
+                {
+                    "name": "江门",
+                    "value": [
+                        113.06,
+                        22.61,
+                        53
+                    ]
+                },
+                {
+                    "name": "昌邑",
+                    "value": 1
+                },
+                {
+                    "name": "莒南",
+                    "value": 1
+                },
+                {
+                    "name": "曲靖",
+                    "value": [
+                        103.79,
+                        25.51,
+                        7
+                    ]
+                },
+                {
+                    "name": "矿",
+                    "value": 1
+                },
+                {
+                    "name": "渝北",
+                    "value": 1
+                },
+                {
+                    "name": "南京",
+                    "value": [
+                        118.78,
+                        32.04,
+                        844
+                    ]
+                },
+                {
+                    "name": "沂南",
+                    "value": 1
+                },
+                {
+                    "name": "安宁",
+                    "value": 1
+                },
+                {
+                    "name": "青田",
+                    "value": 1
+                },
+                {
+                    "name": "金湖",
+                    "value": 1
+                },
+                {
+                    "name": "昌邑",
+                    "value": 2
+                },
+                {
+                    "name": "沧州",
+                    "value": [
+                        116.83,
+                        38.33,
+                        22
+                    ]
+                },
+                {
+                    "name": "西贡",
+                    "value": 2
+                },
+                {
+                    "name": "章丘",
+                    "value": [
+                        117.53,
+                        36.72,
+                        1
+                    ]
+                },
+                {
+                    "name": "福山",
+                    "value": 1
+                },
+                {
+                    "name": "东河",
+                    "value": 1
+                },
+                {
+                    "name": "寿光",
+                    "value": [
+                        118.73,
+                        36.86,
+                        1
+                    ]
+                },
+                {
+                    "name": "历城",
+                    "value": 2
+                },
+                {
+                    "name": "莱芜",
+                    "value": [
+                        117.67,
+                        36.19,
+                        12
+                    ]
+                },
+                {
+                    "name": "宜宾",
+                    "value": [
+                        104.56,
+                        29.77,
+                        20
+                    ]
+                },
+                {
+                    "name": "垦利",
+                    "value": 1
+                },
+                {
+                    "name": "德州",
+                    "value": [
+                        116.29,
+                        37.45,
+                        17
+                    ]
+                },
+                {
+                    "name": "衢州",
+                    "value": [
+                        118.88,
+                        28.97,
+                        34
+                    ]
+                },
+                {
+                    "name": "东营",
+                    "value": [
+                        118.49,
+                        37.46,
+                        33
+                    ]
+                },
+                {
+                    "name": "威海",
+                    "value": [
+                        122.1,
+                        37.5,
+                        58
+                    ]
+                },
+                {
+                    "name": "泰安",
+                    "value": [
+                        117.13,
+                        36.18,
+                        35
+                    ]
+                },
+                {
+                    "name": "集美",
+                    "value": 3
+                },
+                {
+                    "name": "南宁",
+                    "value": [
+                        108.33,
+                        22.84,
+                        1
+                    ]
+                },
+                {
+                    "name": "枣庄",
+                    "value": [
+                        117.57,
+                        34.86,
+                        37
+                    ]
+                },
+                {
+                    "name": "柳州",
+                    "value": [
+                        109.4,
+                        24.33,
+                        1
+                    ]
+                },
+                {
+                    "name": "红桥",
+                    "value": 1
+                },
+                {
+                    "name": "宏伟",
+                    "value": 1
+                },
+                {
+                    "name": "细河",
+                    "value": 1
+                },
+                {
+                    "name": "隆尧",
+                    "value": 1
+                },
+                {
+                    "name": "宝山",
+                    "value": 6
+                },
+                {
+                    "name": "哈密",
+                    "value": 1
+                },
+                {
+                    "name": "西宁",
+                    "value": [
+                        101.74,
+                        36.56,
+                        18
+                    ]
+                },
+                {
+                    "name": "沈河",
+                    "value": 2
+                },
+                {
+                    "name": "清浦",
+                    "value": 1
+                },
+                {
+                    "name": "宁江",
+                    "value": 1
+                },
+                {
+                    "name": "江干",
+                    "value": 18
+                },
+                {
+                    "name": "茂名",
+                    "value": [
+                        110.88,
+                        21.68,
+                        16
+                    ]
+                },
+                {
+                    "name": "香港",
+                    "value": 1
+                },
+                {
+                    "name": "蔚",
+                    "value": 1
+                },
+                {
+                    "name": "瑞丽",
+                    "value": 2
+                },
+                {
+                    "name": "平山",
+                    "value": 1
+                },
+                {
+                    "name": "承德",
+                    "value": [
+                        117.93,
+                        40.97,
+                        26
+                    ]
+                },
+                {
+                    "name": "江汉",
+                    "value": 3
+                },
+                {
+                    "name": "南安",
+                    "value": 1
+                },
+                {
+                    "name": "站前",
+                    "value": 1
+                },
+                {
+                    "name": "丹东",
+                    "value": [
+                        124.37,
+                        40.13,
+                        30
+                    ]
+                },
+                {
+                    "name": "孝南",
+                    "value": 2
+                },
+                {
+                    "name": "辽阳",
+                    "value": 20
+                },
+                {
+                    "name": "盘锦",
+                    "value": [
+                        122.070714,
+                        41.119997,
+                        28
+                    ]
+                },
+                {
+                    "name": "宽城",
+                    "value": 1
+                },
+                {
+                    "name": "聊城",
+                    "value": [
+                        115.97,
+                        36.45,
+                        26
+                    ]
+                },
+                {
+                    "name": "新都",
+                    "value": 1
+                },
+                {
+                    "name": "双塔",
+                    "value": 1
+                },
+                {
+                    "name": "朝阳",
+                    "value": 84
+                },
+                {
+                    "name": "铁西",
+                    "value": 3
+                },
+                {
+                    "name": "乐山",
+                    "value": 27
+                },
+                {
+                    "name": "邯山",
+                    "value": 1
+                },
+                {
+                    "name": "白山",
+                    "value": 7
+                },
+                {
+                    "name": "雁山",
+                    "value": 1
+                },
+                {
+                    "name": "白城",
+                    "value": 8
+                },
+                {
+                    "name": "大通",
+                    "value": 1
+                },
+                {
+                    "name": "中",
+                    "value": 2
+                },
+                {
+                    "name": "繁昌",
+                    "value": 1
+                },
+                {
+                    "name": "丰台",
+                    "value": 8
+                },
+                {
+                    "name": "瑶海",
+                    "value": 1
+                },
+                {
+                    "name": "蚌山",
+                    "value": 2
+                },
+                {
+                    "name": "随州",
+                    "value": 8
+                },
+                {
+                    "name": "亳州",
+                    "value": 19
+                },
+                {
+                    "name": "沈阳",
+                    "value": [
+                        123.38,
+                        41.8,
+                        480
+                    ]
+                },
+                {
+                    "name": "宣城",
+                    "value": 22
+                },
+                {
+                    "name": "于洪",
+                    "value": 1
+                },
+                {
+                    "name": "淮南",
+                    "value": 42
+                },
+                {
+                    "name": "临沂",
+                    "value": [
+                        118.35,
+                        35.05,
+                        50
+                    ]
+                },
+                {
+                    "name": "黄山",
+                    "value": 17
+                },
+                {
+                    "name": "芜湖",
+                    "value": [
+                        118.38,
+                        31.33,
+                        92
+                    ]
+                },
+                {
+                    "name": "安庆",
+                    "value": 26
+                },
+                {
+                    "name": "淮北",
+                    "value": 10
+                },
+                {
+                    "name": "莲都",
+                    "value": 1
+                },
+                {
+                    "name": "龙港",
+                    "value": 1
+                },
+                {
+                    "name": "汇川",
+                    "value": 1
+                },
+                {
+                    "name": "秀洲",
+                    "value": 1
+                },
+                {
+                    "name": "邗江",
+                    "value": 1
+                },
+                {
+                    "name": "奉贤",
+                    "value": 1
+                },
+                {
+                    "name": "宁海",
+                    "value": 1
+                },
+                {
+                    "name": "都昌",
+                    "value": 1
+                },
+                {
+                    "name": "济宁",
+                    "value": [
+                        116.59,
+                        35.38,
+                        61
+                    ]
+                },
+                {
+                    "name": "西城",
+                    "value": 9
+                },
+                {
+                    "name": "延安",
+                    "value": [
+                        109.47,
+                        36.6,
+                        6
+                    ]
+                },
+                {
+                    "name": "鄢陵",
+                    "value": 1
+                },
+                {
+                    "name": "崂山",
+                    "value": 3
+                },
+                {
+                    "name": "湖南",
+                    "value": 1
+                },
+                {
+                    "name": "楚雄",
+                    "value": 1
+                },
+                {
+                    "name": "镜湖",
+                    "value": 2
+                },
+                {
+                    "name": "监利",
+                    "value": 1
+                },
+                {
+                    "name": "未央",
+                    "value": 4
+                },
+                {
+                    "name": "龙泉",
+                    "value": 1
+                },
+                {
+                    "name": "黑河",
+                    "value": 11
+                },
+                {
+                    "name": "萍乡",
+                    "value": 20
+                },
+                {
+                    "name": "济南",
+                    "value": [
+                        117,
+                        36.65,
+                        393
+                    ]
+                },
+                {
+                    "name": "慈溪",
+                    "value": 1
+                },
+                {
+                    "name": "义乌",
+                    "value": [
+                        120.06,
+                        29.32,
+                        2
+                    ]
+                },
+                {
+                    "name": "博白",
+                    "value": 1
+                },
+                {
+                    "name": "富阳",
+                    "value": [
+                        119.95,
+                        30.07,
+                        1
+                    ]
+                },
+                {
+                    "name": "临海",
+                    "value": 1
+                },
+                {
+                    "name": "合肥",
+                    "value": [
+                        117.27,
+                        31.86,
+                        302
+                    ]
+                },
+                {
+                    "name": "船营",
+                    "value": 1
+                },
+                {
+                    "name": "嵊州",
+                    "value": 1
+                },
+                {
+                    "name": "茅箭",
+                    "value": 1
+                },
+                {
+                    "name": "廊坊",
+                    "value": [
+                        116.7,
+                        39.53,
+                        39
+                    ]
+                },
+                {
+                    "name": "高淳",
+                    "value": 1
+                },
+                {
+                    "name": "德城",
+                    "value": 3
+                },
+                {
+                    "name": "云南",
+                    "value": 1
+                },
+                {
+                    "name": "北林",
+                    "value": 1
+                },
+                {
+                    "name": "余杭",
+                    "value": 5
+                },
+                {
+                    "name": "成都",
+                    "value": [
+                        104.06,
+                        30.67,
+                        1413
+                    ]
+                },
+                {
+                    "name": "灌南",
+                    "value": 1
+                },
+                {
+                    "name": "吴兴",
+                    "value": 5
+                },
+                {
+                    "name": "越城",
+                    "value": 1
+                },
+                {
+                    "name": "长洲",
+                    "value": 1
+                },
+                {
+                    "name": "铜陵",
+                    "value": 18
+                },
+                {
+                    "name": "诸暨",
+                    "value": [
+                        120.23,
+                        29.71,
+                        1
+                    ]
+                },
+                {
+                    "name": "南陵",
+                    "value": 1
+                },
+                {
+                    "name": "浦江",
+                    "value": 1
+                },
+                {
+                    "name": "上虞",
+                    "value": 1
+                },
+                {
+                    "name": "渭城",
+                    "value": 1
+                },
+                {
+                    "name": "上海",
+                    "value": [
+                        121.48,
+                        31.22,
+                        2868
+                    ]
+                },
+                {
+                    "name": "瑞安",
+                    "value": 3
+                },
+                {
+                    "name": "胶州",
+                    "value": [
+                        120.03336,
+                        36.264622,
+                        2
+                    ]
+                },
+                {
+                    "name": "卫东",
+                    "value": 3
+                },
+                {
+                    "name": "惠城",
+                    "value": 4
+                },
+                {
+                    "name": "闸北",
+                    "value": 1
+                },
+                {
+                    "name": "绵阳",
+                    "value": [
+                        104.73,
+                        31.48,
+                        57
+                    ]
+                },
+                {
+                    "name": "平原",
+                    "value": 1
+                },
+                {
+                    "name": "大兴",
+                    "value": 3
+                },
+                {
+                    "name": "抚顺",
+                    "value": [
+                        123.97,
+                        41.97,
+                        33
+                    ]
+                },
+                {
+                    "name": "九江",
+                    "value": [
+                        115.97,
+                        29.71,
+                        62
+                    ]
+                },
+                {
+                    "name": "浙江",
+                    "value": 2
+                },
+                {
+                    "name": "秀屿",
+                    "value": 1
+                },
+                {
+                    "name": "舟山",
+                    "value": [
+                        122.207216,
+                        29.985295,
+                        23
+                    ]
+                },
+                {
+                    "name": "台州",
+                    "value": [
+                        121.420757,
+                        28.656386,
+                        201
+                    ]
+                },
+                {
+                    "name": "",
+                    "value": 131
+                },
+                {
+                    "name": "连山",
+                    "value": 1
+                },
+                {
+                    "name": "崇文",
+                    "value": 1
+                },
+                {
+                    "name": "宁波",
+                    "value": [
+                        121.56,
+                        29.86,
+                        350
+                    ]
+                },
+                {
+                    "name": "弋江",
+                    "value": 1
+                },
+                {
+                    "name": "蚌埠",
+                    "value": 33
+                },
+                {
+                    "name": "昆明",
+                    "value": [
+                        102.73,
+                        25.04,
+                        195
+                    ]
+                },
+                {
+                    "name": "金湾",
+                    "value": 1
+                },
+                {
+                    "name": "罗定",
+                    "value": 1
+                },
+                {
+                    "name": "洪山",
+                    "value": 6
+                },
+                {
+                    "name": "武义",
+                    "value": 1
+                },
+                {
+                    "name": "南沙",
+                    "value": 1
+                },
+                {
+                    "name": "增城",
+                    "value": 1
+                },
+                {
+                    "name": "金牛",
+                    "value": 3
+                },
+                {
+                    "name": "斗门",
+                    "value": 1
+                },
+                {
+                    "name": "武江",
+                    "value": 1
+                },
+                {
+                    "name": "南平",
+                    "value": 53
+                },
+                {
+                    "name": "新抚",
+                    "value": 2
+                },
+                {
+                    "name": "埇桥",
+                    "value": 1
+                },
+                {
+                    "name": "大同",
+                    "value": [
+                        113.3,
+                        40.12,
+                        27
+                    ]
+                },
+                {
+                    "name": "怀化",
+                    "value": 20
+                },
+                {
+                    "name": "松阳",
+                    "value": 1
+                },
+                {
+                    "name": "相山",
+                    "value": 1
+                },
+                {
+                    "name": "龙山",
+                    "value": 1
+                },
+                {
+                    "name": "江城",
+                    "value": 1
+                },
+                {
+                    "name": "大祥",
+                    "value": 1
+                },
+                {
+                    "name": "伊宁",
+                    "value": 1
+                },
+                {
+                    "name": "晋江",
+                    "value": 1
+                },
+                {
+                    "name": "瓯海",
+                    "value": 2
+                },
+                {
+                    "name": "东湖",
+                    "value": 1
+                },
+                {
+                    "name": "泰州",
+                    "value": [
+                        119.9,
+                        32.49,
+                        54
+                    ]
+                },
+                {
+                    "name": "苏仙",
+                    "value": 1
+                },
+                {
+                    "name": "亭湖",
+                    "value": 1
+                },
+                {
+                    "name": "禅城",
+                    "value": 2
+                },
+                {
+                    "name": "城阳",
+                    "value": 2
+                },
+                {
+                    "name": "广州",
+                    "value": [
+                        113.23,
+                        23.16,
+                        2540
+                    ]
+                },
+                {
+                    "name": "潍坊",
+                    "value": [
+                        119.1,
+                        36.62,
+                        79
+                    ]
+                },
+                {
+                    "name": "兴城",
+                    "value": 1
+                },
+                {
+                    "name": "路桥",
+                    "value": 1
+                },
+                {
+                    "name": "广东",
+                    "value": 3
+                },
+                {
+                    "name": "乌海",
+                    "value": 1
+                },
+                {
+                    "name": "奎文",
+                    "value": 2
+                },
+                {
+                    "name": "韶关",
+                    "value": [
+                        113.62,
+                        24.84,
+                        22
+                    ]
+                },
+                {
+                    "name": "乐清",
+                    "value": 4
+                },
+                {
+                    "name": "河源",
+                    "value": [
+                        114.68,
+                        23.73,
+                        10
+                    ]
+                },
+                {
+                    "name": "咸阳",
+                    "value": [
+                        108.72,
+                        34.36,
+                        25
+                    ]
+                },
+                {
+                    "name": "涪城",
+                    "value": 1
+                },
+                {
+                    "name": "清远",
+                    "value": [
+                        113.01,
+                        23.7,
+                        11
+                    ]
+                },
+                {
+                    "name": "云浮",
+                    "value": [
+                        112.02,
+                        22.93,
+                        9
+                    ]
+                },
+                {
+                    "name": "长治",
+                    "value": [
+                        113.08,
+                        36.18,
+                        11
+                    ]
+                },
+                {
+                    "name": "惠东",
+                    "value": 1
+                },
+                {
+                    "name": "良庆",
+                    "value": 1
+                },
+                {
+                    "name": "肇庆",
+                    "value": [
+                        112.44,
+                        23.05,
+                        30
+                    ]
+                },
+                {
+                    "name": "金平",
+                    "value": 4
+                },
+                {
+                    "name": "汕尾",
+                    "value": [
+                        115.375279,
+                        22.786211,
+                        17
+                    ]
+                },
+                {
+                    "name": "汕头",
+                    "value": [
+                        116.69,
+                        23.39,
+                        85
+                    ]
+                },
+                {
+                    "name": "重",
+                    "value": 4
+                },
+                {
+                    "name": "萧山",
+                    "value": 6
+                },
+                {
+                    "name": "滨湖",
+                    "value": 3
+                },
+                {
+                    "name": "芝罘",
+                    "value": 1
+                },
+                {
+                    "name": "松江",
+                    "value": 3
+                },
+                {
+                    "name": "润州",
+                    "value": 1
+                },
+                {
+                    "name": "赣",
+                    "value": 2
+                },
+                {
+                    "name": "襄阳",
+                    "value": 37
+                },
+                {
+                    "name": "海口",
+                    "value": [
+                        110.35,
+                        20.02,
+                        96
+                    ]
+                },
+                {
+                    "name": "鄞州",
+                    "value": 8
+                },
+                {
+                    "name": "上城",
+                    "value": 4
+                },
+                {
+                    "name": "山东",
+                    "value": 1
+                },
+                {
+                    "name": "苍南",
+                    "value": 5
+                },
+                {
+                    "name": "湖州",
+                    "value": [
+                        120.1,
+                        30.86,
+                        88
+                    ]
+                },
+                {
+                    "name": "日照",
+                    "value": [
+                        119.46,
+                        35.42,
+                        45
+                    ]
+                },
+                {
+                    "name": "淮安",
+                    "value": [
+                        119.15,
+                        33.5,
+                        46
+                    ]
+                },
+                {
+                    "name": "新建",
+                    "value": 1
+                },
+                {
+                    "name": "丰城",
+                    "value": 1
+                },
+                {
+                    "name": "中西",
+                    "value": 1
+                },
+                {
+                    "name": "池州",
+                    "value": 10
+                },
+                {
+                    "name": "东宝",
+                    "value": 1
+                },
+                {
+                    "name": "新余",
+                    "value": 15
+                },
+                {
+                    "name": "柯城",
+                    "value": 1
+                },
+                {
+                    "name": "镇海",
+                    "value": 1
+                },
+                {
+                    "name": "三亚",
+                    "value": [
+                        109.511909,
+                        18.252847,
+                        34
+                    ]
+                },
+                {
+                    "name": "银州",
+                    "value": 1
+                },
+                {
+                    "name": "天山",
+                    "value": 3
+                },
+                {
+                    "name": "章贡",
+                    "value": 1
+                },
+                {
+                    "name": "鹰潭",
+                    "value": 8
+                },
+                {
+                    "name": "三元",
+                    "value": 1
+                },
+                {
+                    "name": "鹤城",
+                    "value": 4
+                },
+                {
+                    "name": "晋城",
+                    "value": 17
+                },
+                {
+                    "name": "上",
+                    "value": 38
+                },
+                {
+                    "name": "绥化",
+                    "value": 11
+                },
+                {
+                    "name": "宜昌",
+                    "value": [
+                        111.3,
+                        30.7,
+                        45
+                    ]
+                },
+                {
+                    "name": "深圳",
+                    "value": [
+                        114.07,
+                        22.62,
+                        1157
+                    ]
+                },
+                {
+                    "name": "金明",
+                    "value": 1
+                },
+                {
+                    "name": "清城",
+                    "value": 1
+                },
+                {
+                    "name": "包头",
+                    "value": [
+                        110,
+                        40.58,
+                        1
+                    ]
+                },
+                {
+                    "name": "武昌",
+                    "value": 5
+                },
+                {
+                    "name": "赣州",
+                    "value": 69
+                },
+                {
+                    "name": "滕州",
+                    "value": 2
+                },
+                {
+                    "name": "绍兴",
+                    "value": [
+                        120.58,
+                        30.01,
+                        108
+                    ]
+                },
+                {
+                    "name": "江都",
+                    "value": 1
+                },
+                {
+                    "name": "青阳",
+                    "value": 1
+                },
+                {
+                    "name": "如东",
+                    "value": 1
+                },
+                {
+                    "name": "汉中",
+                    "value": 11
+                },
+                {
+                    "name": "泗水",
+                    "value": 1
+                },
+                {
+                    "name": "蜀山",
+                    "value": 8
+                },
+                {
+                    "name": "唐山",
+                    "value": [
+                        118.02,
+                        39.63,
+                        109
+                    ]
+                },
+                {
+                    "name": "石鼓",
+                    "value": 1
+                },
+                {
+                    "name": "北塘",
+                    "value": 1
+                },
+                {
+                    "name": "红塔",
+                    "value": 2
+                },
+                {
+                    "name": "龙岗",
+                    "value": 6
+                },
+                {
+                    "name": "海曙",
+                    "value": 4
+                },
+                {
+                    "name": "珠海",
+                    "value": [
+                        113.52,
+                        22.3,
+                        102
+                    ]
+                },
+                {
+                    "name": "通州",
+                    "value": 3
+                },
+                {
+                    "name": "凤阳",
+                    "value": 1
+                },
+                {
+                    "name": "青羊",
+                    "value": 6
+                },
+                {
+                    "name": "丹阳",
+                    "value": 4
+                },
+                {
+                    "name": "温州",
+                    "value": [
+                        120.65,
+                        28.01,
+                        463
+                    ]
+                },
+                {
+                    "name": "闽侯",
+                    "value": 1
+                },
+                {
+                    "name": "下城",
+                    "value": 4
+                },
+                {
+                    "name": "金凤",
+                    "value": 1
+                },
+                {
+                    "name": "泉山",
+                    "value": 1
+                },
+                {
+                    "name": "巴东",
+                    "value": 1
+                },
+                {
+                    "name": "高港",
+                    "value": 1
+                },
+                {
+                    "name": "象山",
+                    "value": 1
+                },
+                {
+                    "name": "汤阴",
+                    "value": 1
+                },
+                {
+                    "name": "荔湾",
+                    "value": 8
+                },
+                {
+                    "name": "广陵",
+                    "value": 4
+                },
+                {
+                    "name": "邳州",
+                    "value": 1
+                },
+                {
+                    "name": "新浦",
+                    "value": 1
+                },
+                {
+                    "name": "太仓",
+                    "value": [
+                        121.1,
+                        31.45,
+                        1
+                    ]
+                },
+                {
+                    "name": "郴州",
+                    "value": 26
+                },
+                {
+                    "name": "浦口",
+                    "value": 2
+                },
+                {
+                    "name": "其它",
+                    "value": 26
+                },
+                {
+                    "name": "德阳",
+                    "value": [
+                        104.37,
+                        31.13,
+                        46
+                    ]
+                },
+                {
+                    "name": "秦淮",
+                    "value": 7
+                },
+                {
+                    "name": "中山",
+                    "value": [
+                        113.38,
+                        22.52,
+                        103
+                    ]
+                },
+                {
+                    "name": "南长",
+                    "value": 4
+                },
+                {
+                    "name": "宣化",
+                    "value": 2
+                },
+                {
+                    "name": "沭阳",
+                    "value": 1
+                },
+                {
+                    "name": "宿城",
+                    "value": 1
+                },
+                {
+                    "name": "南山",
+                    "value": 27
+                },
+                {
+                    "name": "广元",
+                    "value": 14
+                },
+                {
+                    "name": "海陵",
+                    "value": 1
+                },
+                {
+                    "name": "通山",
+                    "value": 1
+                },
+                {
+                    "name": "杭州",
+                    "value": [
+                        120.19,
+                        30.26,
+                        2860
+                    ]
+                },
+                {
+                    "name": "武进",
+                    "value": 7
+                },
+                {
+                    "name": "平江",
+                    "value": 3
+                },
+                {
+                    "name": "仙游",
+                    "value": 1
+                },
+                {
+                    "name": "钟楼",
+                    "value": 2
+                },
+                {
+                    "name": "江阴",
+                    "value": [
+                        120.26,
+                        31.91,
+                        2
+                    ]
+                },
+                {
+                    "name": "商洛",
+                    "value": 2
+                },
+                {
+                    "name": "雨山",
+                    "value": 2
+                },
+                {
+                    "name": "宿迁",
+                    "value": [
+                        118.3,
+                        33.96,
+                        30
+                    ]
+                },
+                {
+                    "name": "博罗",
+                    "value": 1
+                },
+                {
+                    "name": "常德",
+                    "value": [
+                        111.69,
+                        29.05,
+                        28
+                    ]
+                },
+                {
+                    "name": "普陀",
+                    "value": 9
+                },
+                {
+                    "name": "常州",
+                    "value": [
+                        119.95,
+                        31.79,
+                        162
+                    ]
+                },
+                {
+                    "name": "扬州",
+                    "value": [
+                        119.42,
+                        32.39,
+                        95
+                    ]
+                },
+                {
+                    "name": "镇江",
+                    "value": [
+                        119.44,
+                        32.2,
+                        71
+                    ]
+                },
+                {
+                    "name": "东城",
+                    "value": 26
+                },
+                {
+                    "name": "盐城",
+                    "value": [
+                        120.13,
+                        33.38,
+                        65
+                    ]
+                },
+                {
+                    "name": "美兰",
+                    "value": 2
+                },
+                {
+                    "name": "铁岭",
+                    "value": 1
+                },
+                {
+                    "name": "锦江",
+                    "value": 10
+                },
+                {
+                    "name": "许昌",
+                    "value": 26
+                },
+                {
+                    "name": "园",
+                    "value": 1
+                },
+                {
+                    "name": "邵阳",
+                    "value": 24
+                },
+                {
+                    "name": "中山",
+                    "value": [
+                        113.38,
+                        22.52,
+                        9
+                    ]
+                },
+                {
+                    "name": "元朗",
+                    "value": 1
+                },
+                {
+                    "name": "澄海",
+                    "value": 1
+                },
+                {
+                    "name": "龙海",
+                    "value": 1
+                },
+                {
+                    "name": "厦门",
+                    "value": [
+                        118.1,
+                        24.46,
+                        400
+                    ]
+                },
+                {
+                    "name": "嘉定",
+                    "value": 2
+                },
+                {
+                    "name": "滨江",
+                    "value": 15
+                },
+                {
+                    "name": "本溪",
+                    "value": [
+                        123.73,
+                        41.3,
+                        22
+                    ]
+                },
+                {
+                    "name": "海沧",
+                    "value": 1
+                },
+                {
+                    "name": "包河",
+                    "value": 4
+                },
+                {
+                    "name": "余姚",
+                    "value": 1
+                },
+                {
+                    "name": "信州",
+                    "value": 3
+                },
+                {
+                    "name": "铁东",
+                    "value": 1
+                },
+                {
+                    "name": "盘龙",
+                    "value": 4
+                },
+                {
+                    "name": "翔安",
+                    "value": 1
+                },
+                {
+                    "name": "上犹",
+                    "value": 1
+                },
+                {
+                    "name": "西固",
+                    "value": 1
+                },
+                {
+                    "name": "醴陵",
+                    "value": 1
+                },
+                {
+                    "name": "锦州",
+                    "value": [
+                        121.15,
+                        41.13,
+                        36
+                    ]
+                },
+                {
+                    "name": "赛罕",
+                    "value": 1
+                },
+                {
+                    "name": "茌平",
+                    "value": 1
+                },
+                {
+                    "name": "西湖",
+                    "value": 22
+                },
+                {
+                    "name": "运城",
+                    "value": 12
+                },
+                {
+                    "name": "苏州",
+                    "value": [
+                        120.62,
+                        31.32,
+                        583
+                    ]
+                },
+                {
+                    "name": "泸州",
+                    "value": [
+                        105.39,
+                        28.91,
+                        19
+                    ]
+                },
+                {
+                    "name": "揭阳",
+                    "value": [
+                        116.35,
+                        23.55,
+                        53
+                    ]
+                },
+                {
+                    "name": "吉安",
+                    "value": 17
+                },
+                {
+                    "name": "延平",
+                    "value": 1
+                },
+                {
+                    "name": "盘山",
+                    "value": 1
+                },
+                {
+                    "name": "中江",
+                    "value": 1
+                },
+                {
+                    "name": "南海",
+                    "value": 4
+                },
+                {
+                    "name": "抚州",
+                    "value": 12
+                },
+                {
+                    "name": "邢台",
+                    "value": [
+                        114.48,
+                        37.05,
+                        24
+                    ]
+                },
+                {
+                    "name": "锡山",
+                    "value": 2
+                },
+                {
+                    "name": "蕉城",
+                    "value": 2
+                },
+                {
+                    "name": "五华",
+                    "value": 1
+                },
+                {
+                    "name": "庐阳",
+                    "value": 3
+                },
+                {
+                    "name": "渝水",
+                    "value": 1
+                },
+                {
+                    "name": "海宁",
+                    "value": 1
+                },
+                {
+                    "name": "永安",
+                    "value": 1
+                },
+                {
+                    "name": "丰泽",
+                    "value": 5
+                },
+                {
+                    "name": "梁园",
+                    "value": 2
+                },
+                {
+                    "name": "丽水",
+                    "value": [
+                        119.92,
+                        28.45,
+                        48
+                    ]
+                },
+                {
+                    "name": "嘉陵",
+                    "value": 1
+                },
+                {
+                    "name": "湾",
+                    "value": 2
+                },
+                {
+                    "name": "金水",
+                    "value": 13
+                },
+                {
+                    "name": "椒江",
+                    "value": 1
+                },
+                {
+                    "name": "观塘",
+                    "value": 1
+                },
+                {
+                    "name": "东",
+                    "value": 1
+                },
+                {
+                    "name": "九",
+                    "value": 1
+                },
+                {
+                    "name": "南通",
+                    "value": [
+                        121.05,
+                        32.08,
+                        158
+                    ]
+                },
+                {
+                    "name": "黄浦",
+                    "value": 11
+                },
+                {
+                    "name": "台北",
+                    "value": 27
+                },
+                {
+                    "name": "达州",
+                    "value": 14
+                },
+                {
+                    "name": "普洱",
+                    "value": 5
+                },
+                {
+                    "name": "北碚",
+                    "value": 1
+                },
+                {
+                    "name": "天水",
+                    "value": 12
+                },
+                {
+                    "name": "越秀",
+                    "value": 6
+                },
+                {
+                    "name": "广安",
+                    "value": 1
+                },
+                {
+                    "name": "榆林",
+                    "value": 15
+                },
+                {
+                    "name": "句容",
+                    "value": [
+                        119.16,
+                        31.95,
+                        1
+                    ]
+                },
+                {
+                    "name": "浏阳",
+                    "value": 1
+                },
+                {
+                    "name": "仓山",
+                    "value": 4
+                },
+                {
+                    "name": "鹿城",
+                    "value": 3
+                },
+                {
+                    "name": "阳江",
+                    "value": [
+                        111.95,
+                        21.85,
+                        3
+                    ]
+                },
+                {
+                    "name": "玉溪",
+                    "value": [
+                        102.52,
+                        24.35,
+                        7
+                    ]
+                },
+                {
+                    "name": "龙岩",
+                    "value": 16
+                },
+                {
+                    "name": "珲春",
+                    "value": 1
+                },
+                {
+                    "name": "钟山",
+                    "value": 1
+                },
+                {
+                    "name": "巴中",
+                    "value": 11
+                },
+                {
+                    "name": "泗阳",
+                    "value": 1
+                },
+                {
+                    "name": "北仑",
+                    "value": 1
+                },
+                {
+                    "name": "龙湾",
+                    "value": 4
+                },
+                {
+                    "name": "昌平",
+                    "value": 3
+                },
+                {
+                    "name": "海门",
+                    "value": [
+                        121.15,
+                        31.89,
+                        2
+                    ]
+                },
+                {
+                    "name": "江北",
+                    "value": 4
+                },
+                {
+                    "name": "漳州",
+                    "value": 42
+                },
+                {
+                    "name": "雨花",
+                    "value": 5
+                },
+                {
+                    "name": "蒸湘",
+                    "value": 2
+                },
+                {
+                    "name": "涟源",
+                    "value": 1
+                },
+                {
+                    "name": "湖里",
+                    "value": 5
+                },
+                {
+                    "name": "磁",
+                    "value": 1
+                },
+                {
+                    "name": "古塔",
+                    "value": 1
+                },
+                {
+                    "name": "明山",
+                    "value": 1
+                },
+                {
+                    "name": "安顺",
+                    "value": 5
+                },
+                {
+                    "name": "京口",
+                    "value": 3
+                },
+                {
+                    "name": "海",
+                    "value": 103
+                },
+                {
+                    "name": "鲤城",
+                    "value": 1
+                },
+                {
+                    "name": "南阳",
+                    "value": 27
+                },
+                {
+                    "name": "市北",
+                    "value": 2
+                },
+                {
+                    "name": "黄埔",
+                    "value": 1
+                },
+                {
+                    "name": "市中",
+                    "value": 3
+                },
+                {
+                    "name": "武陵",
+                    "value": 2
+                },
+                {
+                    "name": "东阳",
+                    "value": 1
+                },
+                {
+                    "name": "定西",
+                    "value": 1
+                },
+                {
+                    "name": "北湖",
+                    "value": 1
+                },
+                {
+                    "name": "阜新",
+                    "value": 16
+                },
+                {
+                    "name": "丽江",
+                    "value": 13
+                },
+                {
+                    "name": "白下",
+                    "value": 1
+                },
+                {
+                    "name": "龙口",
+                    "value": 1
+                },
+                {
+                    "name": "赫山",
+                    "value": 1
+                },
+                {
+                    "name": "雁塔",
+                    "value": 5
+                },
+                {
+                    "name": "婺城",
+                    "value": 2
+                },
+                {
+                    "name": "安化",
+                    "value": 1
+                },
+                {
+                    "name": "小店",
+                    "value": 10
+                },
+                {
+                    "name": "银川",
+                    "value": [
+                        106.27,
+                        38.47,
+                        3
+                    ]
+                },
+                {
+                    "name": "永嘉",
+                    "value": 1
+                },
+                {
+                    "name": "台中",
+                    "value": 2
+                },
+                {
+                    "name": "长春",
+                    "value": [
+                        125.35,
+                        43.88,
+                        287
+                    ]
+                },
+                {
+                    "name": "鄂州",
+                    "value": 7
+                },
+                {
+                    "name": "陆丰",
+                    "value": 1
+                },
+                {
+                    "name": "荆门",
+                    "value": 19
+                },
+                {
+                    "name": "顺义",
+                    "value": 7
+                },
+                {
+                    "name": "泉州",
+                    "value": [
+                        118.58,
+                        24.93,
+                        190
+                    ]
+                },
+                {
+                    "name": "邯郸",
+                    "value": [
+                        114.47,
+                        36.6,
+                        53
+                    ]
+                },
+                {
+                    "name": "朝阳",
+                    "value": 17
+                },
+                {
+                    "name": "天河",
+                    "value": 21
+                },
+                {
+                    "name": "永州",
+                    "value": 14
+                },
+                {
+                    "name": "东营",
+                    "value": [
+                        118.49,
+                        37.46,
+                        3
+                    ]
+                },
+                {
+                    "name": "西工",
+                    "value": 3
+                },
+                {
+                    "name": "鞍山",
+                    "value": [
+                        122.85,
+                        41.12,
+                        91
+                    ]
+                },
+                {
+                    "name": "岳阳",
+                    "value": [
+                        113.09,
+                        29.37,
+                        23
+                    ]
+                },
+                {
+                    "name": "铜川",
+                    "value": [
+                        109.11,
+                        35.09,
+                        1
+                    ]
+                },
+                {
+                    "name": "宜春",
+                    "value": 18
+                },
+                {
+                    "name": "温岭",
+                    "value": 2
+                },
+                {
+                    "name": "梅列",
+                    "value": 1
+                },
+                {
+                    "name": "衡阳",
+                    "value": 37
+                },
+                {
+                    "name": "桐乡",
+                    "value": 2
+                },
+                {
+                    "name": "株洲",
+                    "value": [
+                        113.16,
+                        27.83,
+                        70
+                    ]
+                },
+                {
+                    "name": "霞山",
+                    "value": 1
+                },
+                {
+                    "name": "南市",
+                    "value": 2
+                },
+                {
+                    "name": "晋中",
+                    "value": 13
+                },
+                {
+                    "name": "伊春",
+                    "value": 5
+                },
+                {
+                    "name": "禹会",
+                    "value": 1
+                },
+                {
+                    "name": "汉阳",
+                    "value": 2
+                },
+                {
+                    "name": "花都",
+                    "value": 3
+                },
+                {
+                    "name": "龙华",
+                    "value": 2
+                },
+                {
+                    "name": "大理",
+                    "value": 1
+                },
+                {
+                    "name": "浔阳",
+                    "value": 4
+                },
+                {
+                    "name": "东港",
+                    "value": 1
+                },
+                {
+                    "name": "涧西",
+                    "value": 1
+                },
+                {
+                    "name": "合浦",
+                    "value": 1
+                },
+                {
+                    "name": "鼓楼",
+                    "value": 16
+                },
+                {
+                    "name": "贵阳",
+                    "value": [
+                        106.71,
+                        26.57,
+                        152
+                    ]
+                },
+                {
+                    "name": "芙蓉",
+                    "value": 5
+                },
+                {
+                    "name": "开福",
+                    "value": 4
+                },
+                {
+                    "name": "宝安",
+                    "value": 16
+                },
+                {
+                    "name": "河北",
+                    "value": 1
+                },
+                {
+                    "name": "永康",
+                    "value": 4
+                },
+                {
+                    "name": "宿州",
+                    "value": 23
+                },
+                {
+                    "name": "周口",
+                    "value": 12
+                },
+                {
+                    "name": "佛山",
+                    "value": [
+                        113.11,
+                        23.05,
+                        142
+                    ]
+                },
+                {
+                    "name": "安徽",
+                    "value": 2
+                },
+                {
+                    "name": "松原",
+                    "value": 14
+                },
+                {
+                    "name": "杨浦",
+                    "value": 6
+                },
+                {
+                    "name": "吉林",
+                    "value": [
+                        126.57,
+                        43.87,
+                        66
+                    ]
+                },
+                {
+                    "name": "当涂",
+                    "value": 1
+                },
+                {
+                    "name": "樊城",
+                    "value": 4
+                },
+                {
+                    "name": "江夏",
+                    "value": 2
+                },
+                {
+                    "name": "房山",
+                    "value": 1
+                },
+                {
+                    "name": "玄武",
+                    "value": 6
+                },
+                {
+                    "name": "海安",
+                    "value": 2
+                },
+                {
+                    "name": "东山",
+                    "value": 2
+                },
+                {
+                    "name": "嘉兴",
+                    "value": [
+                        120.76,
+                        30.77,
+                        288
+                    ]
+                },
+                {
+                    "name": "赤坎",
+                    "value": 1
+                },
+                {
+                    "name": "南充",
+                    "value": [
+                        106.110698,
+                        30.837793,
+                        41
+                    ]
+                },
+                {
+                    "name": "海州",
+                    "value": 1
+                },
+                {
+                    "name": "港闸",
+                    "value": 2
+                },
+                {
+                    "name": "从化",
+                    "value": 1
+                },
+                {
+                    "name": "肥西",
+                    "value": 1
+                },
+                {
+                    "name": "钟祥",
+                    "value": 1
+                },
+                {
+                    "name": "惠州",
+                    "value": [
+                        114.4,
+                        23.09,
+                        63
+                    ]
+                },
+                {
+                    "name": "番禺",
+                    "value": 7
+                },
+                {
+                    "name": "华龙",
+                    "value": 2
+                },
+                {
+                    "name": "遂昌",
+                    "value": 1
+                },
+                {
+                    "name": "宝鸡",
+                    "value": [
+                        107.15,
+                        34.38,
+                        16
+                    ]
+                },
+                {
+                    "name": "太原",
+                    "value": [
+                        112.53,
+                        37.87,
+                        150
+                    ]
+                },
+                {
+                    "name": "商丘",
+                    "value": 26
+                },
+                {
+                    "name": "河南",
+                    "value": 2
+                },
+                {
+                    "name": "濮阳",
+                    "value": 24
+                },
+                {
+                    "name": "湖北",
+                    "value": 4
+                },
+                {
+                    "name": "海淀",
+                    "value": 16
+                },
+                {
+                    "name": "曲江",
+                    "value": 1
+                },
+                {
+                    "name": "芦淞",
+                    "value": 1
+                },
+                {
+                    "name": "蔡甸",
+                    "value": 3
+                },
+                {
+                    "name": "蛟河",
+                    "value": 1
+                },
+                {
+                    "name": "郑州",
+                    "value": [
+                        113.65,
+                        34.76,
+                        461
+                    ]
+                },
+                {
+                    "name": "菏泽",
+                    "value": [
+                        115.480656,
+                        35.23375,
+                        28
+                    ]
+                },
+                {
+                    "name": "河西",
+                    "value": 1
+                },
+                {
+                    "name": "顺德",
+                    "value": 4
+                },
+                {
+                    "name": "天",
+                    "value": 6
+                },
+                {
+                    "name": "莱州",
+                    "value": [
+                        119.942327,
+                        37.177017,
+                        1
+                    ]
+                },
+                {
+                    "name": "张湾",
+                    "value": 1
+                },
+                {
+                    "name": "金华",
+                    "value": [
+                        119.64,
+                        29.12,
+                        248
+                    ]
+                },
+                {
+                    "name": "仪征",
+                    "value": 2
+                },
+                {
+                    "name": "黄陂",
+                    "value": 1
+                },
+                {
+                    "name": "市南",
+                    "value": 4
+                },
+                {
+                    "name": "凌河",
+                    "value": 1
+                },
+                {
+                    "name": "乳山",
+                    "value": [
+                        121.52,
+                        36.89,
+                        1
+                    ]
+                },
+                {
+                    "name": "青秀",
+                    "value": 3
+                },
+                {
+                    "name": "雅安",
+                    "value": 11
+                },
+                {
+                    "name": "廉江",
+                    "value": 1
+                },
+                {
+                    "name": "道里",
+                    "value": 3
+                },
+                {
+                    "name": "云岩",
+                    "value": 1
+                },
+                {
+                    "name": "临河",
+                    "value": 1
+                },
+                {
+                    "name": "北海",
+                    "value": [
+                        109.12,
+                        21.49,
+                        1
+                    ]
+                },
+                {
+                    "name": "忻州",
+                    "value": 8
+                },
+                {
+                    "name": "遂宁",
+                    "value": 18
+                },
+                {
+                    "name": "新乡",
+                    "value": 30
+                },
+                {
+                    "name": "岳麓",
+                    "value": 8
+                },
+                {
+                    "name": "长宁",
+                    "value": 13
+                },
+                {
+                    "name": "台江",
+                    "value": 2
+                },
+                {
+                    "name": "河口",
+                    "value": 1
+                },
+                {
+                    "name": "江岸",
+                    "value": 6
+                },
+                {
+                    "name": "渝中",
+                    "value": 6
+                },
+                {
+                    "name": "南昌",
+                    "value": [
+                        115.89,
+                        28.68,
+                        276
+                    ]
+                },
+                {
+                    "name": "北京",
+                    "value": [
+                        116.46,
+                        39.92,
+                        3926
+                    ]
+                },
+                {
+                    "name": "万州",
+                    "value": 1
+                },
+                {
+                    "name": "崇川",
+                    "value": 5
+                },
+                {
+                    "name": "大冶",
+                    "value": 1
+                },
+                {
+                    "name": "双流",
+                    "value": 3
+                },
+                {
+                    "name": "福田",
+                    "value": 25
+                },
+                {
+                    "name": "莲湖",
+                    "value": 2
+                },
+                {
+                    "name": "东莞",
+                    "value": [
+                        113.75,
+                        23.04,
+                        270
+                    ]
+                },
+                {
+                    "name": "同安",
+                    "value": 1
+                },
+                {
+                    "name": "拱墅",
+                    "value": 10
+                },
+                {
+                    "name": "古城",
+                    "value": 1
+                },
+                {
+                    "name": "栖霞",
+                    "value": 4
+                },
+                {
+                    "name": "焦作",
+                    "value": [
+                        113.21,
+                        35.24,
+                        24
+                    ]
+                },
+                {
+                    "name": "陕西",
+                    "value": 1
+                },
+                {
+                    "name": "十堰",
+                    "value": 21
+                },
+                {
+                    "name": "玉环",
+                    "value": 1
+                },
+                {
+                    "name": "虹口",
+                    "value": 7
+                },
+                {
+                    "name": "兰州",
+                    "value": [
+                        103.73,
+                        36.03,
+                        75
+                    ]
+                },
+                {
+                    "name": "红旗",
+                    "value": 1
+                },
+                {
+                    "name": "黄冈",
+                    "value": 23
+                },
+                {
+                    "name": "长沙",
+                    "value": [
+                        113,
+                        28.21,
+                        497
+                    ]
+                },
+                {
+                    "name": "孟州",
+                    "value": 1
+                },
+                {
+                    "name": "潜江",
+                    "value": 3
+                },
+                {
+                    "name": "潮州",
+                    "value": [
+                        116.63,
+                        23.68,
+                        25
+                    ]
+                },
+                {
+                    "name": "临汾",
+                    "value": [
+                        111.5,
+                        36.08,
+                        15
+                    ]
+                },
+                {
+                    "name": "黄岛",
+                    "value": 2
+                },
+                {
+                    "name": "徐州",
+                    "value": [
+                        117.2,
+                        34.26,
+                        130
+                    ]
+                },
+                {
+                    "name": "通化",
+                    "value": 18
+                },
+                {
+                    "name": "南湖",
+                    "value": 2
+                },
+                {
+                    "name": "福建",
+                    "value": 3
+                },
+                {
+                    "name": "娄底",
+                    "value": 13
+                },
+                {
+                    "name": "中原",
+                    "value": 3
+                },
+                {
+                    "name": "大观",
+                    "value": 1
+                },
+                {
+                    "name": "常熟",
+                    "value": [
+                        120.74,
+                        31.64,
+                        4
+                    ]
+                },
+                {
+                    "name": "盐湖",
+                    "value": 2
+                },
+                {
+                    "name": "滁州",
+                    "value": 23
+                },
+                {
+                    "name": "益阳",
+                    "value": 24
+                },
+                {
+                    "name": "牡丹",
+                    "value": 2
+                },
+                {
+                    "name": "琼海",
+                    "value": 3
+                },
+                {
+                    "name": "新洲",
+                    "value": 1
+                },
+                {
+                    "name": "湘潭",
+                    "value": [
+                        112.91,
+                        27.87,
+                        25
+                    ]
+                },
+                {
+                    "name": "牧野",
+                    "value": 1
+                },
+                {
+                    "name": "梅州",
+                    "value": [
+                        116.1,
+                        24.55,
+                        16
+                    ]
+                },
+                {
+                    "name": "海珠",
+                    "value": 5
+                },
+                {
+                    "name": "黄石",
+                    "value": 30
+                },
+                {
+                    "name": "阜阳",
+                    "value": 18
+                },
+                {
+                    "name": "西岗",
+                    "value": 2
+                },
+                {
+                    "name": "嵊泗",
+                    "value": 1
+                },
+                {
+                    "name": "兰山",
+                    "value": 3
+                },
+                {
+                    "name": "万宁",
+                    "value": 1
+                },
+                {
+                    "name": "江宁",
+                    "value": 7
+                },
+                {
+                    "name": "营口",
+                    "value": [
+                        122.18,
+                        40.65,
+                        34
+                    ]
+                },
+                {
+                    "name": "咸宁",
+                    "value": 13
+                },
+                {
+                    "name": "建邺",
+                    "value": 6
+                },
+                {
+                    "name": "张店",
+                    "value": 6
+                },
+                {
+                    "name": "新华",
+                    "value": 1
+                },
+                {
+                    "name": "滨州",
+                    "value": [
+                        118.03,
+                        37.36,
+                        21
+                    ]
+                },
+                {
+                    "name": "江苏",
+                    "value": 5
+                },
+                {
+                    "name": "吴中",
+                    "value": 12
+                },
+                {
+                    "name": "福州",
+                    "value": [
+                        119.3,
+                        26.08,
+                        347
+                    ]
+                },
+                {
+                    "name": "吕梁",
+                    "value": 9
+                },
+                {
+                    "name": "莆田",
+                    "value": 37
+                },
+                {
+                    "name": "南浔",
+                    "value": 1
+                },
+                {
+                    "name": "北",
+                    "value": 96
+                },
+                {
+                    "name": "老城",
+                    "value": 1
+                },
+                {
+                    "name": "西安",
+                    "value": [
+                        108.95,
+                        34.27,
+                        404
+                    ]
+                },
+                {
+                    "name": "天桥",
+                    "value": 2
+                },
+                {
+                    "name": "宁德",
+                    "value": 51
+                },
+                {
+                    "name": "宝清",
+                    "value": 1
+                },
+                {
+                    "name": "硚口",
+                    "value": 2
+                },
+                {
+                    "name": "徐汇",
+                    "value": 22
+                },
+                {
+                    "name": "三明",
+                    "value": 31
+                },
+                {
+                    "name": "鄱阳",
+                    "value": 1
+                },
+                {
+                    "name": "淄博",
+                    "value": [
+                        118.05,
+                        36.78,
+                        78
+                    ]
+                },
+                {
+                    "name": "天门",
+                    "value": 4
+                },
+                {
+                    "name": "城",
+                    "value": 1
+                },
+                {
+                    "name": "碑林",
+                    "value": 5
+                },
+                {
+                    "name": "临城",
+                    "value": 1
+                },
+                {
+                    "name": "义马",
+                    "value": 1
+                },
+                {
+                    "name": "江东",
+                    "value": 1
+                },
+                {
+                    "name": "盐都",
+                    "value": 1
+                },
+                {
+                    "name": "爱辉",
+                    "value": 1
+                },
+                {
+                    "name": "湘桥",
+                    "value": 1
+                },
+                {
+                    "name": "振安",
+                    "value": 1
+                },
+                {
+                    "name": "雨湖",
+                    "value": 1
+                },
+                {
+                    "name": "临淄",
+                    "value": 1
+                },
+                {
+                    "name": "大连",
+                    "value": [
+                        121.62,
+                        38.92,
+                        440
+                    ]
+                },
+                {
+                    "name": "平凉",
+                    "value": 2
+                },
+                {
+                    "name": "武清",
+                    "value": 1
+                },
+                {
+                    "name": "红山",
+                    "value": 1
+                },
+                {
+                    "name": "长安",
+                    "value": 2
+                },
+                {
+                    "name": "眉山",
+                    "value": 12
+                },
+                {
+                    "name": "天心",
+                    "value": 4
+                },
+                {
+                    "name": "静安",
+                    "value": 12
+                },
+                {
+                    "name": "无锡",
+                    "value": [
+                        120.29,
+                        31.59,
+                        310
+                    ]
+                },
+                {
+                    "name": "向阳",
+                    "value": 1
+                },
+                {
+                    "name": "孝感",
+                    "value": 15
+                },
+                {
+                    "name": "香洲",
+                    "value": 8
+                },
+                {
+                    "name": "睢宁",
+                    "value": 1
+                },
+                {
+                    "name": "虎丘",
+                    "value": 1
+                },
+                {
+                    "name": "昌江",
+                    "value": 1
+                },
+                {
+                    "name": "福清",
+                    "value": 1
+                },
+                {
+                    "name": "漯河",
+                    "value": 18
+                },
+                {
+                    "name": "信阳",
+                    "value": 27
+                },
+                {
+                    "name": "海盐",
+                    "value": 3
+                },
+                {
+                    "name": "青神",
+                    "value": 1
+                },
+                {
+                    "name": "济源",
+                    "value": 1
+                },
+                {
+                    "name": "天津",
+                    "value": [
+                        117.2,
+                        39.13,
+                        555
+                    ]
+                },
+                {
+                    "name": "资阳",
+                    "value": 10
+                },
+                {
+                    "name": "衡水",
+                    "value": [
+                        115.72,
+                        37.72,
+                        15
+                    ]
+                },
+                {
+                    "name": "安康",
+                    "value": 12
+                },
+                {
+                    "name": "南岗",
+                    "value": 3
+                },
+                {
+                    "name": "庐山",
+                    "value": 1
+                },
+                {
+                    "name": "仙桃",
+                    "value": 6
+                },
+                {
+                    "name": "离",
+                    "value": 1
+                },
+                {
+                    "name": "开封",
+                    "value": [
+                        114.35,
+                        34.79,
+                        29
+                    ]
+                },
+                {
+                    "name": "桃园",
+                    "value": 2
+                },
+                {
+                    "name": "绿园",
+                    "value": 2
+                },
+                {
+                    "name": "鹤壁",
+                    "value": 10
+                },
+                {
+                    "name": "武汉",
+                    "value": [
+                        114.31,
+                        30.52,
+                        1033
+                    ]
+                },
+                {
+                    "name": "南明",
+                    "value": 2
+                },
+                {
+                    "name": "文峰",
+                    "value": 2
+                },
+                {
+                    "name": "海港",
+                    "value": 4
+                },
+                {
+                    "name": "辽宁",
+                    "value": 3
+                },
+                {
+                    "name": "浈江",
+                    "value": 1
+                },
+                {
+                    "name": "大港",
+                    "value": 1
+                },
+                {
+                    "name": "二七",
+                    "value": 2
+                },
+                {
+                    "name": "荆州",
+                    "value": [
+                        112.239741,
+                        30.335165,
+                        27
+                    ]
+                },
+                {
+                    "name": "朔州",
+                    "value": 3
+                },
+                {
+                    "name": "上饶",
+                    "value": 26
+                },
+                {
+                    "name": "巢湖",
+                    "value": 3
+                },
+                {
+                    "name": "保定",
+                    "value": [
+                        115.48,
+                        38.85,
+                        87
+                    ]
+                },
+                {
+                    "name": "铁岭",
+                    "value": 20
+                },
+                {
+                    "name": "南开",
+                    "value": 1
+                },
+                {
+                    "name": "武侯",
+                    "value": 12
+                },
+                {
+                    "name": "昆山",
+                    "value": [
+                        120.95,
+                        31.39,
+                        3
+                    ]
+                },
+                {
+                    "name": "四平",
+                    "value": 12
+                },
+                {
+                    "name": "青岛",
+                    "value": [
+                        120.33,
+                        36.07,
+                        454
+                    ]
+                },
+                {
+                    "name": "乌当",
+                    "value": 1
+                },
+                {
+                    "name": "安阳",
+                    "value": [
+                        114.35,
+                        36.1,
+                        29
+                    ]
+                },
+                {
+                    "name": "江阳",
+                    "value": 1
+                },
+                {
+                    "name": "新北",
+                    "value": 2
+                },
+                {
+                    "name": "重庆",
+                    "value": [
+                        106.54,
+                        29.59,
+                        615
+                    ]
+                },
+                {
+                    "name": "崇安",
+                    "value": 3
+                },
+                {
+                    "name": "和平",
+                    "value": 8
+                },
+                {
+                    "name": "闵行",
+                    "value": 18
+                },
+                {
+                    "name": "城关",
+                    "value": 4
+                },
+                {
+                    "name": "定远",
+                    "value": 1
+                },
+                {
+                    "name": "思明",
+                    "value": 11
+                },
+                {
+                    "name": "临渭",
+                    "value": 1
+                },
+                {
+                    "name": "辽源",
+                    "value": 4
+                },
+                {
+                    "name": "历下",
+                    "value": 6
+                },
+                {
+                    "name": "临沧",
+                    "value": 2
+                },
+                {
+                    "name": "城中",
+                    "value": 1
+                },
+                {
+                    "name": "皇姑",
+                    "value": 4
+                },
+                {
+                    "name": "罗湖",
+                    "value": 16
+                },
+                {
+                    "name": "白塔",
+                    "value": 1
+                },
+                {
+                    "name": "白云",
+                    "value": 10
+                },
+                {
+                    "name": "麦积",
+                    "value": 1
+                },
+                {
+                    "name": "湛江",
+                    "value": [
+                        110.359377,
+                        21.270708,
+                        35
+                    ]
+                },
+                {
+                    "name": "襄州",
+                    "value": 1
+                },
+                {
+                    "name": "新市",
+                    "value": 3
+                }
+            ],
+            "label": {
+                "normal": {
+                    "show": false,
+                    "position": "top",
+                    "textStyle": {
+                        "color": "#000",
+                        "fontSize": 12
+                    },
+                    "formatter": null
+                },
+                "emphasis": {
+                    "show": true
+                }
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                ""
+            ],
+            "selectedMode": true,
+            "show": true,
+            "left": "center",
+            "top": "top",
+            "orient": "horizontal"
+        }
+    ],
+    "backgroundColor": "#404a59",
+    "geo": {
+        "map": "china",
+        "label": {},
+        "itemStyle": {
+            "normal": {
+                "areaColor": "#323c48",
+                "borderColor": "#111"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    "visualMap": {
+        "type": "continuous",
+        "min": 0,
+        "max": 1000,
+        "text": [
+            "hight",
+            "low"
+        ],
+        "textStyle": {
+            "color": "#fff"
+        },
+        "inRange": {
+            "color": [
+                "#50a3ba",
+                "#eac763",
+                "#d94e5d"
+            ]
+        },
+        "calculable": true,
+        "orient": "vertical",
+        "left": "left",
+        "top": "bottom"
+    },
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597",
+        "#f6f5ec"
+    ]
+};
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>
