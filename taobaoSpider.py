@@ -28,7 +28,7 @@ class Spider:
                 'user-agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36',
                 'x-requested-with':'XMLHttpRequest',
                      }
-        self.save = Save();
+        self.save = Save()
 
     #获取MM的信息,得到json格式数据，返回list格式
     def getLists(self,pageIndex):
@@ -64,14 +64,14 @@ class Spider:
     #传入起止页码，获取MM图片
     def savePagesInfo(self,start,end):
         for i in range(start,end+1):
-            print u"正在偷偷寻找第",i,u"个地方，看看MM们在不在"
+            print (u"正在偷偷寻找第",i,u"个地方，看看MM们在不在")
             self.savePageInfo(i)
 
     #将一页淘宝MM的信息保存起来
     def savePageInfo(self,pageIndex):
         #获取淘宝MM列表信息
         lists = self.getLists(pageIndex)
-        print u"本次找到美女",len(lists),"位"
+        print (u"本次找到美女",len(lists),"位")
         i=0
         for item in lists:
             detailURL = 'https://mm.taobao.com/self/aiShow.htm?userId='+str(lists[i]['userId'])
@@ -90,9 +90,9 @@ class Save:
     def saveDetail(self,detailURL,item):
         time.sleep(2)   #防止访问太快而导致连接受阻
         #item[0]个人详情URL,item[1]头像URL,item[2]姓名,item[3]年龄,item[4]居住地
-        print u"发现一位模特,名字叫",item['realName']
-        print u"身高",item['height'],u"体重",item['weight'],u",她在",item['city']
-        print u"正在保存",item['realName'],"的信息"
+        print (u"发现一位模特,名字叫",item['realName'])
+        print (u"身高",item['height'],u"体重",item['weight'],u",她在",item['city'])
+        print (u"正在保存",item['realName'],"的信息")
         #得到个人详情页面代码
         detailPage = self.getDetailPage(detailURL)
 #             print 'detailPage+++++++' ,detailPage
@@ -249,7 +249,7 @@ class Save:
     def saveBrief(self,content,name,userid):
         fileName = name + "/" + str(userid) + ".txt"
         f = open(self.rootpath+fileName,"w+")
-        print u"正在偷偷保存她的个人信息为",fileName
+        print (u"正在偷偷保存她的个人信息为",fileName)
         f.write(content.encode('utf-8'))
 
 
@@ -258,7 +258,7 @@ class Save:
         if(imageURL.find('https',0,len('https')) ==-1):
             imageURL='https:'+imageURL
         urllib.urlretrieve(imageURL,self.rootpath+fileName)
-        print u"正在悄悄保存她的一张图片为",fileName
+        print(u"正在悄悄保存她的一张图片为",fileName)
         
     #保存相册中的所有照片    
     def savePhotoAll(self,userid,usernm,albumItem): 
@@ -268,7 +268,7 @@ class Save:
             PhotoListAll = self.getPhotoListAll(userid, albumItem[0])#通过相册id获取所有照片地址
             for PhotoList in PhotoListAll:#循环照片地址列表
                 index = PhotoList['picUrl'].find('jpg', 0)+3
-                picUrlbig = PhotoList['picUrl'][0:index]; #截断jpg后面的文本，保存大图
+                picUrlbig = PhotoList['picUrl'][0:index] #截断jpg后面的文本，保存大图
                 self.saveImg(picUrlbig, usernm+"/"+AlbumName+"/"+PhotoList['picId']+".jpg")
 
     #创建新目录
@@ -282,13 +282,13 @@ class Save:
         # 判断结果
         if not isExists:
             # 如果不存在则创建目录
-            print u"偷偷新建了名字叫做",path,u'的文件夹'
+            print(u"偷偷新建了名字叫做",path,u'的文件夹')
             # 创建目录操作函数
             os.makedirs(truePath)
             return True
         else:
             # 如果目录存在则不创建，并提示目录已存在
-            print u"名为",path,'的文件夹已经创建成功'
+            print(u"名为",path,'的文件夹已经创建成功')
             return False
         
 import threading
@@ -306,17 +306,17 @@ class CrawlerThread(threading.Thread):
         self.usernm=usernm
         self.albumItem=AlbumItem
         self.threadnm='Thread-'+str(threadnm)
-        self.save = Save();
+        self.save = Save()
     def run(self):
         try:
 #             threadLock.acquire()
-            print u'下载线程',self.threadnm,'启动'
+            print(u'下载线程',self.threadnm,'启动')
             self.save.savePhotoAll(self.userid,self.usernm,self.albumItem)
 #             threadLock.release()
-        except Exception,e:
-            print u'下载失败,MM',self.usernm,'的相册下载失败'
-            print u'下载线程',self.threadnm,'退出'
-            print e
+        except Exception as e:
+            print (u'下载失败,MM',self.usernm,'的相册下载失败')
+            print (u'下载线程',self.threadnm,'退出')
+            print (e)
             return None
 # threadLock = threading.Lock()
 

@@ -65,11 +65,11 @@ class Spider:
     def savePageInfo(self, pageIndex,region):
         lists = self.getLists(pageIndex,region)
         if(lists == None):
-            print u"本次找到美女", 0, u"位,地区",region,u"页数",pageIndex
+            print (u"本次找到美女", 0, u"位,地区",region,u"页数",pageIndex)
         else:
-            print u"本次找到美女", len(lists), u"位,地区",region,u"页数",pageIndex
+            print (u"本次找到美女", len(lists), u"位,地区",region,u"页数",pageIndex)
             for item in lists:
-                print u"发现一位模特,名字叫", item['realName']
+                print (u"发现一位模特,名字叫", item['realName'])
                 # print u"身高", item['height'], u"体重", item['weight'], u",她在", item['city'], u",点赞人数", item['totalFavorNum']
                 # print u"正在偷偷地保存", item['realName'], "的信息"
                 # 获取个人详情
@@ -116,7 +116,7 @@ class Spider:
     # 爬虫开始
     def start(self):
         for item in self.region:
-            print u"正在查找位于", item, u"的美眉们..."
+            print (u"正在查找位于", item, u"的美眉们...")
             totalpage, totalcount = self.searchByRegion(item)
             for x in range(1,int(totalpage)+1):
                 self.savePageInfo(x,item)

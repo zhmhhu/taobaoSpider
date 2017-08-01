@@ -58,6 +58,5 @@ class UserInfo:
 if __name__ == '__main__':
     userinfoclass=UserInfo()
     infos = userinfoclass.moduleInfo('176817195')
-    print infos
-    # for info in infos:
-    #     print info
+    print (infos)
+

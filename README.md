@@ -22,9 +22,6 @@
 1. 淘宝淘女郎全国分布图  
 [淘宝淘女郎全国分布图](https://github.com/zhmhhu/taobaoSpider/raw/master/charts/regionDistribute.html)  
 
-2. 淘宝淘女郎城市分布图  
-[淘宝淘女郎城市分布图](https://github.com/zhmhhu/taobaoSpider/raw/master/charts/cityDistribute.html)  
-
 
 # 下一步工作
 使用机器学习，构造一个评分器，输入人物的特征值，对该人物的颜值进行打分。
