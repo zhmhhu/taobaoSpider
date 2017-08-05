@@ -4,10 +4,10 @@ Created on 2016年7月26日
 对淘宝MM数据进行分析，用图表展示
 '''
 from pymongo import MongoClient
-from pyecharts import Map
-from pyecharts import Geo
+from pyecharts import Map,Geo,Bar
 from extension import mongo_collection
 from extension import mongo_collection2
+import re
 
 MONGO_URI = 'mongodb://localhost:27017'
 
@@ -26,32 +26,22 @@ class Statistic:
             data['region'] = region
             data['totalCount'] = count
             mongo_region_dist.update({'id': data['region']}, data, upsert=True)
-            # map = Map("淘宝淘女郎全国分布图", width=1200, height=600)
-            # map.add("", attr, value, maptype='china',visual_range=[0, 5000],is_visualmap=True, visual_text_color='#000')
-            # map.show_config()
-            # map.render(r"charts/regionDistribute.html")
 
     def cityDistribute(self):
-        data = []
-        value = []
-        attr = []
+        data = {}
+        mongo_city_dist = mongo_db['citydist']
         cityData = mongo_collection.aggregate([{'$group': {'_id': '$city', 'num_tutorial': {'$sum': 1}}}])
         for item in cityData:
             city = item['_id']
             if len(city) > 3:
                 pass
             else:
-                city = item['_id'][:-1]
+                city = item['_id'][:-1] #获取城市地名的方法待完善
                 count = item['num_tutorial']
-                data.append((city, count))
-                value.append(count)
-                attr.append(city)
-        geo = Geo("淘宝淘女郎城市分布图", "data from mm.taobao.com", title_color="#fff", title_pos="center",
-                  width=1200, height=600, background_color='#404a59')
-        attr, value = geo.cast(data)
-        geo.add("", attr, value, visual_range=[0, 1000], visual_text_color="#fff", symbol_size=12, is_visualmap=True)
-        geo.show_config()
-        geo.render(r"charts/cityDistribute.html")
+                data['city'] = city
+                data['totalCount'] = count
+                mongo_city_dist.update({'id': data['city']}, data, upsert=True)
+
 
     def height_statistic(self):
         userData = mongo_collection.find()
@@ -115,14 +105,11 @@ class Statistic:
 
     def birthday_statistic(self):
         import time
-        import re
         mongo_birthday_stat = mongo_db['birthdaystat']
         userData = mongo_collection.find()
         birthdayCot = {"Aries": 0, "Taurus": 0, "Gemini": 0, "Cancer": 0, "Leo": 0, "Virgo": 0,
                        "Libra": 0, "Scorpio": 0, "Sagittarius": 0, "Capricornus": 0, "Aquarius": 0, "Pisces": 0}
         for item in userData:
-            # if item['birthday'] != None:
-
             myItem = re.findall("(\d+)月(\d+)日", item['birthday'])
             if myItem != None and len(myItem) >= 1:
                 birthday = myItem[0]
@@ -166,17 +153,100 @@ class Statistic:
                         (1990, 3, 20, 0, 0, 0, 1, 48, 0)):
                     birthdayCot["Pisces"] += 1
 
-        print(birthdayCot)
-        # mongo_birthday_stat.update({'id': i}, {"month": myItem[0], "date": myItem[1]}, upsert=True)
+        for i in birthdayCot:
+            mongo_birthday_stat.update({'id': i}, {"blood": i, "value": birthdayCot[i]}, upsert=True)
+
 
     def sanwei_statistic(self):
-        pass
+        mongo_sanwei_stat = mongo_db['sanweistat']
+        userData = mongo_collection.find()
+        for item in userData:
+            myItem = re.findall("(\d+)-(\d+)-(\d+)", item['sanwei'])
+            if myItem != None and len(myItem) >= 1:
+                sanwei = myItem[0]
+                chest=sanwei[0]
+                waist=sanwei[1]
+                buttock=sanwei[2]
+                #待完成
+            print(myItem)
 
+    def draw_result(self):
+        mongo_region_dist = mongo_db['regiondist']
+        regiondist = mongo_region_dist.find({}, {"_id": 0})
+        attr = []
+        value = []
+        for item in regiondist:
+            value.append(item['totalCount'])
+            attr.append(item["region"])
+        map = Map("淘宝淘女郎全国分布图", width=1200, height=600)
+        map.add("", attr, value, maptype='china', visual_range=[0, 5000], is_visualmap=True,
+                         visual_text_color='#000')
+        map.render(r"charts/regionDistribute.html")
+
+        #某些城市的地理坐标无法正确获取，故绘图结果不不正确，待完善
+        '''mongo_city_dist = mongo_db['citydist']
+        citydist = mongo_city_dist.find({}, {"_id": 0})
+        attr = []
+        value = []
+        for item in citydist:
+            value.append(item['totalCount'])
+            attr.append(item["city"])
+        geo = Geo("淘宝淘女郎城市分布图", "data from mm.taobao.com", title_color="#fff", title_pos="center",
+                  width=1200, height=600, background_color='#404a59')
+        geo.add("", attr, value, visual_range=[0, 1000], visual_text_color="#fff", symbol_size=12, is_visualmap=True)
+        geo.render(r"charts/cityDistribute.html")'''
+
+        mongo_height_stat = mongo_db['heightstat']
+        heightstat = mongo_height_stat.find({}, {"_id": 0})
+        attr = []
+        value = []
+        for item in heightstat:
+            value.append(item['value'])
+            attr.append(item["height"])
+        bar = Bar("淘宝淘女郎身高分布图", "data from mm.taobao.com")
+        bar.add("", attr,value)
+        bar.render("charts/heightstat.html")
+
+        mongo_weight_stat = mongo_db['weightstat']
+        weightstat = mongo_weight_stat.find({}, {"_id": 0})
+        attr = []
+        value = []
+        for item in weightstat:
+            value.append(item['value'])
+            attr.append(item["weight"])
+        bar = Bar("淘宝淘女郎体重分布图", "data from mm.taobao.com")
+        bar.add("", attr, value)
+        bar.render("charts/weightstat.html")
+
+        mongo_blood_stat = mongo_db['bloodstat']
+        bloodstat = mongo_blood_stat.find({}, {"_id": 0})
+        attr = []
+        value = []
+        for item in bloodstat:
+            value.append(item['value'])
+            attr.append(item["blood"])
+        bar = Bar("淘宝淘女郎血型分布图", "data from mm.taobao.com")
+        bar.add("", attr, value)
+        bar.render("charts/bloodstat.html")
+
+        mongo_birthday_stat = mongo_db['birthdaystat']
+        birthdaystat = mongo_birthday_stat.find({}, {"_id": 0})
+        attr = []
+        value = []
+        for item in birthdaystat:
+            value.append(item['value'])
+            attr.append(item["blood"])
+        bar = Bar("淘宝淘女郎生日星座分布图", "data from mm.taobao.com")
+        bar.add("", attr, value)
+        bar.render("charts/birthdaystat.html")
 
 if __name__ == '__main__':
     statistic = Statistic()
-    # statics.regionDistribute()
-    # statics.cityDistribute() #待完善
-    # statics.weight_statistic()
-    # statics.blood_statistic()
+    statistic.regionDistribute()
+    statistic.cityDistribute() #待完善
+    statistic.weight_statistic()
+    statistic.blood_statistic()
     statistic.birthday_statistic()
+    statistic.sanwei_statistic()
+    #以下是绘图函数，需待统计函数执行完毕之后再执行
+    # statistic.draw_result()
