@@ -32,7 +32,8 @@
 这个比较有意思。是不是说明A型血的人普遍长得更漂亮一些，如果是AB型血，还是做男孩子比较好一点。  
 ![image](https://github.com/zhmhhu/taobaoSpider/raw/master/png/bloodstat.png)  
 5. 淘宝淘女郎星座分布图  
-直接统计生日并不是很好处理，于是我把它们转换成了星座，从这个结果可以看出，每个星座并没有绝对的数量差别，人数最多的星座Libra(天秤座)与人数最少的星座Aries(白羊座)也没相差多少，这一结论说明，星座决定论是多么扯淡的事情。O(∩_∩)O哈哈~
+直接统计生日并不是很好处理，于是我把它们转换成了星座，从这个结果可以看出，每个星座并没有绝对的数量差别，人数最多的星座Libra(天秤座)与人数最少的星座Aries(白羊座)也没相差多少，这一结论说明，星座决定论是多么扯淡的事情。O(∩_∩)O哈哈~  
+![image](https://github.com/zhmhhu/taobaoSpider/raw/master/png/birthdaystat.png)  
 
 
 
